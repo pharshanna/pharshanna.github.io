@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshanna Prasanna — Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink: #1b1b1f;
+            --paper: #f7f6f3;
+            --card: #ffffff;
+            --muted: #6b6b76;
+            --accent: #5b4cdb;
+            --accent-soft: #ede9ff;
+            --android: #3ddc84;
+            --algo: #f59e0b;
+            --border: #e4e3df;
+            --radius: 10px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(247,246,243,0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+        nav .inner {
+            max-width: 1000px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            height: 56px;
+        }
+        nav .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1.1rem;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+        nav .links { display: flex; gap: 1.75rem; }
+        nav .links a {
+            text-decoration: none; color: var(--muted);
+            font-size: 0.875rem; font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav .links a:hover { color: var(--ink); }
+
+        /* ── HERO ── */
+        .hero {
+            max-width: 1000px; margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        .hero .eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero .intro {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+        .hero .cta-row {
+            margin-top: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap;
+        }
+        .hero .cta-row a {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem; font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--accent); color: #fff;
+        }
+        .btn-primary:hover { background: #4a3cbf; }
+        .btn-secondary {
+            background: var(--card); color: var(--ink);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── SECTIONS ── */
+        section {
+            max-width: 1000px; margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem; font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem; font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        /* ── PROJECTS ── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 4px 1fr;
+            gap: 1.5rem;
+            transition: box-shadow 0.25s, border-color 0.25s;
+        }
+        .project-card:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            border-color: transparent;
+        }
+        .project-bar {
+            border-radius: 4px;
+            width: 4px;
+        }
+        .bar-android { background: var(--android); }
+        .bar-algo { background: var(--algo); }
+        .bar-fullstack { background: var(--accent); }
+
+        .project-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem; font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
+        }
+        .project-type {
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tag {
+            font-size: 0.75rem; font-weight: 500;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: var(--paper);
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+        .tag.highlight {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: transparent;
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .skill-group {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+        .skill-group h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .skill-group ul {
+            list-style: none;
+        }
+        .skill-group li {
+            font-size: 0.9rem;
+            color: var(--muted);
+            padding: 0.3rem 0;
+        }
+
+        /* ── ABOUT ── */
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 640px;
+            line-height: 1.75;
+        }
+
+        /* ── CONTACT ── */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem 6rem;
+        }
+        .contact-section .section-title {
+            margin-bottom: 0.75rem;
+        }
+        .contact-section p {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .contact-section a.email-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-soft);
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+        .contact-section a.email-link:hover {
+            border-color: var(--accent);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .hero { padding: 7rem 1.25rem 3rem; }
+            section { padding: 2rem 1.25rem; }
+            .project-card { padding: 1.5rem; }
+            nav .links { gap: 1rem; }
+            nav .links a { font-size: 0.8rem; }
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition-duration: 0s !important; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="inner">
+        <div class="logo">HP</div>
+        <div class="links">
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="eyebrow">Software Developer</div>
+    <h1>Harshanna Prasanna</h1>
+    <p class="intro">
+        Incoming CS student who builds Android apps, data structures, and
+        creative software. Looking to bring energy, technical skill, and a
+        willingness to learn to a team that moves fast.
+    </p>
+    <div class="cta-row">
+        <a href="#projects" class="btn-primary">See my work ↓</a>
+        <a href="https://github.com/pharshanna" target="_blank" class="btn-secondary">
+            GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/harshanna-prasanna-909262311" target="_blank" class="btn-secondary">
+            LinkedIn
+        </a>
+    </div>
+</header>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">What I've built</h2>
+
+    <div class="project-grid">
+
+        <!-- Trader Joe's Full-Stack -->
+        <div class="project-card">
+            <div class="project-bar bar-fullstack"></div>
+            <div class="project-content">
+                <h3>Trader Joe's Product App</h3>
+                <div class="project-type">Full-Stack Android Application</div>
+                <p>
+                    A multi-screen Android app with user authentication and live data.
+                    Users register and log in through Firebase, then browse Trader Joe's
+                    products pulled in real-time from a Google Sheets database via REST API.
+                    Tapping a product opens a detail screen with price, calorie, and
+                    ingredient info. Features tabbed navigation with ViewPager and
+                    remembers user state between sessions.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">Firebase Auth</span>
+                    <span class="tag highlight">Google Sheets API</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">RecyclerView</span>
+                    <span class="tag">Fragments</span>
+                    <span class="tag">JSON Parsing</span>
+                    <span class="tag">SharedPreferences</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOUR Suggestions -->
+        <div class="project-card">
+            <div class="project-bar bar-algo"></div>
+            <div class="project-content">
+                <h3>SOUR Suggestions — Predictive Writing Assistant</h3>
+                <div class="project-type">Data Structures &amp; NLP</div>
+                <p>
+                    A predictive text engine that analyzes Olivia Rodrigo's SOUR album
+                    lyrics using a Trie (prefix tree). Type a prefix and the system
+                    predicts the most likely next character and next word based on
+                    frequency analysis, displaying results with percentage likelihoods.
+                    Includes an interactive "Guess the Lyric" game. All operations
+                    run in O(L) time where L is the word length — faster than scanning
+                    the full dataset every time.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">Trie Data Structure</span>
+                    <span class="tag highlight">Predictive Text</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Frequency Analysis</span>
+                    <span class="tag">Big O Optimization</span>
+                    <span class="tag">File I/O</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cookie Cutter -->
+        <div class="project-card">
+            <div class="project-bar bar-android"></div>
+            <div class="project-content">
+                <h3>Cookie Cutter — Idle Clicker Game</h3>
+                <div class="project-type">Android Game Development</div>
+                <p>
+                    A Takis-themed idle clicker game for Android. Tap the screen to
+                    earn points with satisfying crunch sound effects and floating "+1"
+                    animations. Spend points on upgrades that increase your click
+                    multiplier, and unlock passive income that earns points
+                    automatically every second. Uses multi-threading with AtomicInteger
+                    for thread-safe score tracking across the game loop and UI thread.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">Multi-Threading</span>
+                    <span class="tag highlight">Game Design</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">Animations</span>
+                    <span class="tag">MediaPlayer</span>
+                    <span class="tag">AtomicInteger</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BST -->
+        <div class="project-card">
+            <div class="project-bar bar-algo"></div>
+            <div class="project-content">
+                <h3>Binary Search Tree</h3>
+                <div class="project-type">Data Structures &amp; Algorithms</div>
+                <p>
+                    A full generic Binary Search Tree implementation in Java supporting
+                    insertion, deletion (with in-order successor replacement), search,
+                    and three traversal algorithms (in-order, pre-order, post-order).
+                    Includes left and right tree rotations — the foundation of
+                    self-balancing trees like AVL and Red-Black trees. Built with Java
+                    Generics so it works with any comparable data type.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">Generics</span>
+                    <span class="tag highlight">Recursion</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Tree Rotations</span>
+                    <span class="tag">Traversal Algorithms</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Info Display -->
+        <div class="project-card">
+            <div class="project-bar bar-android"></div>
+            <div class="project-content">
+                <h3>Dynamic Information Display</h3>
+                <div class="project-type">Android Application</div>
+                <p>
+                    A product catalog app featuring a scrollable list of items with
+                    images, names, categories, and prices. Built with a custom
+                    ArrayAdapter that controls exactly how each list row renders.
+                    Tapping a product reveals a detail panel, and each item can be
+                    removed from the list in real-time with instant UI refresh.
+                    Users can also rate items on a 1–10 scale.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">Custom Adapter</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">ListView</span>
+                    <span class="tag">Dynamic UI</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Calculator -->
+        <div class="project-card">
+            <div class="project-bar bar-android"></div>
+            <div class="project-content">
+                <h3>Financial Calculator</h3>
+                <div class="project-type">Android Application</div>
+                <p>
+                    An Android calculator app with standard arithmetic and financial
+                    functions. Uses a stack-based evaluation engine (Reverse Polish
+                    Notation) — the same system used by HP financial calculators.
+                    Features compound interest calculation (Future Value) and monthly
+                    interest payment computation, making it a practical tool for
+                    basic financial planning.
+                </p>
+                <div class="tag-row">
+                    <span class="tag highlight">RPN Engine</span>
+                    <span class="tag highlight">Financial Math</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">Stack-Based Parsing</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+
+    <div class="skills-grid">
+        <div class="skill-group">
+            <h4>Languages</h4>
+            <ul>
+                <li>Java</li>
+                <li>Python</li>
+                <li>C# (Unity)</li>
+                <li>HTML / CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h4>Mobile</h4>
+            <ul>
+                <li>Android Studio</li>
+                <li>Firebase Auth</li>
+                <li>REST APIs</li>
+                <li>Material Design</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h4>CS Fundamentals</h4>
+            <ul>
+                <li>Data Structures</li>
+                <li>Algorithms</li>
+                <li>Big O Analysis</li>
+                <li>OOP / Generics</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h4>Tools</h4>
+            <ul>
+                <li>Git / GitHub</li>
+                <li>Unity Engine</li>
+                <li>Google Workspace</li>
+                <li>JSON / APIs</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-label">About</div>
+    <h2 class="section-title">A bit about me</h2>
+    <p class="about-text">
+        I'm a recent high school graduate heading to New Jersey Institute of Technology
+        to study Computer Science. My interest in programming began with developing Android apps
+        and grew into a fascination with turning ideas into real, working software.
+        I like to bring personality into everything I build — whether that means
+        theming a project around Trader Joe's snacks or turning Olivia Rodrigo lyrics
+        into a predictive text engine, I find ways to make code feel fun and expressive,
+        not just functional. I enjoy creating things that solve problems
+        or make people want to interact with them.
+    </p>
+    <br>
+    <p class="about-text">
+        I'm looking for an opportunity where I can contribute real work,
+        learn from experienced developers, and grow fast. I'm reliable,
+        detail-oriented, and comfortable figuring things out on my own.
+        If your team needs someone who ships code and shows up ready to
+        learn — let's talk.
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+    <div class="section-label">Get in touch</div>
+    <h2 class="section-title">Let's connect</h2>
+    <p>Open to internships, part-time roles, and freelance work.</p>
+    <a href="mailto:your.email@example.com" class="email-link">your.email@example.com</a>
+</section>
+
+<footer>
+    &copy; 2026 Harshanna Prasanna
+</footer>
+
+</body>
+</html>
